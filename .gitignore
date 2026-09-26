@@ -1,0 +1,40 @@
+# Maven build output
+/target/
+**/target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.class
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# H2 database local files (if generated locally)
+*.mv.db
+*.trace.db
+
+# Spring Boot environment files
+.env
+.env.*
+application-local.yml
+application-local.properties
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Java / Gradle / other local tool files
+.gradle/
+build/
+out/
+
+# Optional: local secrets or generated config
+secrets/
+*.pem

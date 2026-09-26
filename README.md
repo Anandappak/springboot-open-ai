@@ -1,75 +1,40 @@
-# Spring Boot OpenSearch AI Assistant
+# Village Temple Management System
 
 ## Overview
-This project is a Spring Boot application that combines OpenSearch and AI to create a simple retrieval-augmented generation (RAG) assistant. The goal is to answer user questions using relevant documents retrieved from a search engine and then generate a response based on that context.
+This project is a Spring Boot temple management system for a village temple office. It allows the administrator to manage members, donations, and events through a dashboard UI and REST APIs. The app stores data in an in-memory H2 database, making it easy to run locally for demos, testing, and small-scale administration.
 
-In simple terms, the app does this:
-- accepts a user question,
-- searches matching content in OpenSearch,
-- gathers the most relevant results,
-- sends the result context to an AI model,
-- returns a grounded answer with source context.
+The system supports:
+- managing temple members and committee roles,
+- tracking donations and their purpose,
+- planning temple events and poojas,
+- monitoring a live dashboard summary,
+- admin login and password management from the UI.
 
-This is useful for enterprise search, internal knowledge assistants, support bots, and document Q&A systems.
-
-## What the project does
-The project demonstrates a complete AI search flow:
-- REST API for user queries
-- OpenSearch-style document retrieval
-- Context formatting for the AI layer
-- OpenAI-compatible answer generation
-- Fallback response when external services are not configured
-- Health endpoint for monitoring
-
-## Why this project is useful
-This type of solution is helpful when users want accurate answers from internal documents and knowledge bases instead of relying only on a general model without sources.
-
-### Benefits
-- Fast semantic or keyword search through OpenSearch
-- More accurate answers because the model uses retrieved context
-- Easy to extend for document search, support chat, knowledge base systems, and FAQs
-- Spring Boot-based REST API structure for easy deployment
-- Suitable for demos, prototypes, and practical enterprise use cases
+## Features
+- Admin login with DB-backed credentials
+- Password change page in the dashboard UI
+- Add, update, and delete temple members
+- Add, update, and delete donations
+- Add, update, and delete events
+- Dashboard summary for total members, donations, events, and donation amount
+- H2 in-memory database for local development and testing
+- Spring Security with HTTP Basic authentication for protected APIs
 
 ## Tech Stack
 - Java 17
-- Spring Boot 3.3.x
+- Spring Boot 3.3.4
 - Maven
 - Spring Web
-- Spring Validation
+- Spring Data JPA
+- Spring Security
+- H2 Database
 - Spring Actuator
-- OpenSearch Java client / search integration
-- WebClient for HTTP-based external service calls
-- OpenAI-compatible API integration
-- JUnit 5 + AssertJ for testing
-
-## Architecture
-The application follows a clean multi-layer pattern:
-
-1. Controller layer
-   - receives HTTP requests
-   - validates the request payload
-   - returns JSON responses
-
-2. Service layer
-   - orchestrates the assistant workflow
-   - retrieves search documents
-   - builds the prompt for the AI model
-
-3. Search service
-   - queries OpenSearch for the best matching documents
-   - returns ranked results
-
-4. AI service
-   - calls the AI model using the retrieved context
-   - generates the final answer
-
-5. Configuration layer
-   - reads OpenSearch and OpenAI settings from application properties
+- HTML/CSS/JavaScript dashboard frontend
+- JUnit 5 + Spring Test
 
 ## Project Structure
 ```text
-springboot-open-ai-search/
+Springboot-open-ai-search/
 ├── pom.xml
 ├── README.md
 ├── src/
@@ -79,139 +44,221 @@ springboot-open-ai-search/
 │   │   │       ├── config/
 │   │   │       ├── controller/
 │   │   │       ├── model/
+│   │   │       ├── repository/
 │   │   │       └── service/
 │   │   └── resources/
-│   │       └── application.yml
+│   │       ├── application.yml
+│   │       └── static/
+│   │           ├── index.html
+│   │           ├── styles.css
+│   │           └── app.js
 │   └── test/
 │       └── java/
-│           └── com/example/opensearchassistant/service/
-└── target/
+│           └── com/example/opensearchassistant/
+├── target/
+└── .gitignore
 ```
 
 ## Prerequisites
-Before running this project, make sure you have:
+Before running the project, make sure you have:
 - Java 17 or newer
 - Maven 3.8+
-- An OpenSearch instance running locally or in a remote environment
-- An OpenAI API key if you want live AI generation
+- A browser to access the dashboard and H2 console
 
 ## Configuration
-The application configuration is stored in [src/main/resources/application.yml](src/main/resources/application.yml).
+The main configuration is in [src/main/resources/application.yml](src/main/resources/application.yml).
 
-Example:
+Key configuration values:
 ```yaml
 server:
-  port: 8080
+  port: 8082
 
 spring:
   application:
-    name: springboot-open-ai-search
-
-opensearch:
-  host: http://localhost:9200
-  username: admin
-  password: admin
-  index: documents
-
-openai:
-  api-key: ${OPENAI_API_KEY:}
-  model: gpt-4o-mini
-  base-url: https://api.openai.com/v1
+    name: village-temple-management
+  datasource:
+    url: jdbc:h2:mem:templedb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
 ```
 
-### How to use it
-- Set the OpenSearch host and index if you are using a real OpenSearch cluster.
-- Set the OpenAI API key if you want real LLM responses.
-- If the API key is missing, the app uses a fallback response built from the retrieved context.
-
-## Implementation Steps
-### 1. Clone the project
-```bash
-git clone <repository-url>
-cd springboot-open-ai-search
+H2 database console:
+```text
+http://localhost:8082/h2-console
 ```
 
-### 2. Build the project
+H2 connection details:
+- JDBC URL: `jdbc:h2:mem:templedb`
+- Username: `sa`
+- Password: blank
+
+## Default Admin Credentials
+The default admin account is seeded automatically into the database:
+- Username: `admin`
+- Password: `temple123`
+
+This account is stored in the `admin_users` table and can be changed from the dashboard UI.
+
+## Run the project
+### 1. Build the project
 ```bash
 mvn clean install
 ```
 
-### 3. Run the application
+### 2. Start the application
 ```bash
 mvn spring-boot:run
 ```
 
-### 4. Test the app
+### 3. Test the app
 ```bash
 mvn test
 ```
 
-### 5. Call the API
-Send a POST request to:
+## Access the dashboard
+Open the following URL in a browser:
+```text
+http://localhost:8082/
+```
+
+From the dashboard, you can:
+- log in as the admin user,
+- change the admin password,
+- add members, donations, and events,
+- refresh the dashboard summary.
+
+## Admin API Endpoints
+
+### Login
 ```http
-POST /api/ask
+POST /api/admin/login
 Content-Type: application/json
 ```
 
-Request body example:
+Request body:
 ```json
 {
-  "query": "What is OpenSearch?",
-  "maxResults": 5
+  "username": "admin",
+  "password": "temple123"
 }
+```
+
+### Change password
+```http
+POST /api/admin/change-password
+Content-Type: application/json
+```
+
+Request body:
+```json
+{
+  "currentPassword": "temple123",
+  "newPassword": "newTemple456"
+}
+```
+
+The UI sends the current password and new password to this endpoint, then updates the saved admin credential in the database.
+
+## Temple Management API Endpoints
+
+### Health
+```http
+GET /api/temple/health
+```
+
+### Dashboard summary
+```http
+GET /api/temple/dashboard
 ```
 
 Example response:
 ```json
 {
-  "answer": "OpenSearch is a distributed search and analytics engine...",
-  "results": [
-    {
-      "id": "opensearch-1",
-      "title": "OpenSearch Overview",
-      "content": "OpenSearch is a distributed search and analytics engine built for scale."
-    }
-  ]
+  "totalMembers": 5,
+  "totalDonations": 12,
+  "totalEvents": 3,
+  "totalDonationAmount": 12500.00
 }
 ```
 
-## Health check
+### Members
 ```http
-GET /api/health
+GET /api/temple/members
+POST /api/temple/members
+POST /api/temple/members/{id}
+DELETE /api/temple/members/{id}
 ```
 
-Expected response:
-```text
-OK
+Example member payload:
+```json
+{
+  "name": "Ravi",
+  "role": "Trustee",
+  "phoneNumber": "0771234567",
+  "address": "North Lane"
+}
+```
+
+### Donations
+```http
+GET /api/temple/donations
+POST /api/temple/donations
+POST /api/temple/donations/{id}
+DELETE /api/temple/donations/{id}
+```
+
+Example donation payload:
+```json
+{
+  "donorName": "Meera",
+  "amount": 2500.00,
+  "purpose": "Festival",
+  "donationDate": "2026-09-26"
+}
+```
+
+### Events
+```http
+GET /api/temple/events
+POST /api/temple/events
+POST /api/temple/events/{id}
+DELETE /api/temple/events/{id}
+```
+
+Example event payload:
+```json
+{
+  "name": "Pooja Festival",
+  "eventDate": "2026-09-29",
+  "description": "Temple festival celebration",
+  "status": "Planned"
+}
 ```
 
 ## How the app works
-The workflow is:
-1. User sends a search question.
-2. The backend validates the input.
-3. OpenSearch is queried for matching documents.
-4. The top results are converted into context.
-5. A prompt is created with the user question and retrieved documents.
-6. The AI model answers using that context.
-7. The final answer and source results are returned to the client.
+1. The application starts with the H2 database enabled.
+2. Spring Security protects temple management endpoints and allows public access only to the login endpoint and static dashboard assets.
+3. The admin account is created in the database automatically on startup.
+4. The dashboard UI loads summary data and management records from the backend.
+5. CRUD operations are handled through JPA repositories and persisted to H2.
+6. The password change form updates the stored admin credential in the database.
 
 ## Example use cases
-- Internal knowledge base assistant
-- HR policy search assistant
-- Product documentation help desk
-- Developer support bot
-- Customer support search assistant
-
-## Future improvements
-The project can be extended with:
-- real document indexing into OpenSearch,
-- better relevance tuning and scoring,
-- embedding-based semantic search,
-- user authentication and authorization,
-- response caching,
-- multi-model support,
-- dashboard and UI frontend,
-- Docker and Kubernetes deployment.
+- Village temple administration
+- Donation tracking for festivals and maintenance
+- Volunteer and committee member directory
+- Event planning for poojas and cultural activities
+- Monthly temple reporting and overview dashboard
 
 ## Notes
-This project is a starter implementation for an AI-powered search assistant. It is structured so it can be extended into a production-ready application with live OpenSearch indexing, enterprise search, and real AI-powered responses.
+This project is designed as a lightweight local application for temple administration and demonstration. The H2 database keeps setup simple, and the dashboard UI allows the admin to manage operations without any external services.

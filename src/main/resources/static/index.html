@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Village Temple Management</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Village Administration</p>
+        <h1>Temple Management Dashboard</h1>
+      </div>
+      <button id="refreshBtn" class="primary-btn">Refresh Data</button>
+    </header>
+
+    <main class="container">
+      <section class="panel-grid">
+        <article class="card">
+          <h2>Admin Login</h2>
+          <form id="adminLoginForm">
+            <input type="text" name="username" value="admin" placeholder="Username" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit" class="primary-btn">Login</button>
+          </form>
+        </article>
+
+        <article class="card">
+          <h2>Change Admin Password</h2>
+          <form id="passwordChangeForm">
+            <input type="password" name="currentPassword" placeholder="Current password" required />
+            <input type="password" name="newPassword" placeholder="New password" required />
+            <button type="submit" class="primary-btn">Update Password</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="summary-grid" id="summaryGrid">
+        <article class="card summary-card">
+          <span>Total Members</span>
+          <strong id="totalMembers">0</strong>
+        </article>
+        <article class="card summary-card">
+          <span>Total Donations</span>
+          <strong id="totalDonations">0</strong>
+        </article>
+        <article class="card summary-card">
+          <span>Total Events</span>
+          <strong id="totalEvents">0</strong>
+        </article>
+        <article class="card summary-card highlight">
+          <span>Donation Amount</span>
+          <strong id="totalDonationAmount">0.00</strong>
+        </article>
+      </section>
+
+      <section class="panel-grid">
+        <article class="card">
+          <h2>Add Member</h2>
+          <form id="memberForm">
+            <input type="text" name="name" placeholder="Name" required />
+            <input type="text" name="role" placeholder="Role" required />
+            <input type="text" name="phoneNumber" placeholder="Phone" required />
+            <input type="text" name="address" placeholder="Address" required />
+            <button type="submit" class="primary-btn">Save Member</button>
+          </form>
+        </article>
+
+        <article class="card">
+          <h2>Add Donation</h2>
+          <form id="donationForm">
+            <input type="text" name="donorName" placeholder="Donor Name" required />
+            <input type="number" name="amount" step="0.01" placeholder="Amount" required />
+            <input type="text" name="purpose" placeholder="Purpose" required />
+            <input type="date" name="donationDate" required />
+            <button type="submit" class="primary-btn">Save Donation</button>
+          </form>
+        </article>
+
+        <article class="card">
+          <h2>Add Event</h2>
+          <form id="eventForm">
+            <input type="text" name="name" placeholder="Event Name" required />
+            <input type="date" name="eventDate" required />
+            <input type="text" name="description" placeholder="Description" required />
+            <input type="text" name="status" placeholder="Status" required />
+            <button type="submit" class="primary-btn">Save Event</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="table-grid">
+        <article class="card">
+          <h2>Members</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Phone</th>
+                <th>Address</th>
+              </tr>
+            </thead>
+            <tbody id="membersTableBody"></tbody>
+          </table>
+        </article>
+
+        <article class="card">
+          <h2>Donations</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Donor</th>
+                <th>Amount</th>
+                <th>Purpose</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="donationsTableBody"></tbody>
+          </table>
+        </article>
+
+        <article class="card">
+          <h2>Events</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="eventsTableBody"></tbody>
+          </table>
+        </article>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

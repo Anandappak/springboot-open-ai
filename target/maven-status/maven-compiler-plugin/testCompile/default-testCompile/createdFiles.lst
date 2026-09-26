@@ -1,1 +1,3 @@
 com\example\opensearchassistant\service\AssistantServiceTest.class
+com\example\opensearchassistant\service\TempleManagementServiceTest.class
+com\example\opensearchassistant\controller\TempleManagementControllerSecurityTest.class
