@@ -1,0 +1,13 @@
+com\example\opensearchassistant\service\DocumentIndexingService.class
+com\example\opensearchassistant\controller\AssistantController.class
+com\example\opensearchassistant\model\KnowledgeDocument.class
+com\example\opensearchassistant\service\OpenAiService.class
+com\example\opensearchassistant\model\SearchResult.class
+com\example\opensearchassistant\model\AssistantResponse.class
+com\example\opensearchassistant\OpenSearchAiAssistantApplication.class
+com\example\opensearchassistant\config\OpenAiProperties.class
+com\example\opensearchassistant\service\AssistantService.class
+com\example\opensearchassistant\model\AssistantRequest.class
+com\example\opensearchassistant\service\OpenSearchService.class
+com\example\opensearchassistant\config\OpenSearchProperties.class
+com\example\opensearchassistant\model\ErrorResponse.class

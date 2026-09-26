@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: springboot-open-ai-search
+
+opensearch:
+  host: http://localhost:9200
+  username: admin
+  password: admin
+
+openai:
+  api-key: ${OPENAI_API_KEY:}
+  model: gpt-4o-mini
+  base-url: https://api.openai.com/v1

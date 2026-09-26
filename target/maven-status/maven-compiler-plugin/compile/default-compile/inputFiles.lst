@@ -1,0 +1,13 @@
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\config\OpenAiProperties.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\config\OpenSearchProperties.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\AssistantController.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\AssistantRequest.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\AssistantResponse.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\ErrorResponse.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\KnowledgeDocument.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\SearchResult.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\OpenSearchAiAssistantApplication.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\service\AssistantService.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\service\DocumentIndexingService.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\service\OpenAiService.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\service\OpenSearchService.java
