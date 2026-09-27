@@ -4,6 +4,7 @@ F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\confi
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\config\SecurityConfig.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\AdminController.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\AssistantController.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\McpController.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\PublicDonationController.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\TempleManagementController.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\AdminLoginRequest.java
@@ -17,6 +18,8 @@ F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\TempleDashboardSummary.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\TempleDonation.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\TempleEvent.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\TempleMcpSearchRequest.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\TempleMcpSearchResponse.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\TempleMember.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\OpenSearchAiAssistantApplication.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\repository\AdminUserRepository.java
@@ -29,3 +32,4 @@ F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\servi
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\service\OpenAiService.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\service\OpenSearchService.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\service\TempleManagementService.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\service\TempleMcpService.java

@@ -11,7 +11,9 @@ com\example\opensearchassistant\controller\TempleManagementController.class
 com\example\opensearchassistant\repository\AdminUserRepository.class
 com\example\opensearchassistant\service\AssistantService.class
 com\example\opensearchassistant\model\AssistantRequest.class
+com\example\opensearchassistant\model\TempleMcpSearchRequest.class
 com\example\opensearchassistant\service\AdminUserService.class
+com\example\opensearchassistant\controller\McpController.class
 com\example\opensearchassistant\model\TempleDashboardSummary.class
 com\example\opensearchassistant\model\KnowledgeDocument.class
 com\example\opensearchassistant\service\OpenAiService.class
@@ -20,9 +22,11 @@ com\example\opensearchassistant\model\TempleDonation.class
 com\example\opensearchassistant\controller\PublicDonationController.class
 com\example\opensearchassistant\OpenSearchAiAssistantApplication.class
 com\example\opensearchassistant\model\AdminUser.class
+com\example\opensearchassistant\service\TempleMcpService.class
 com\example\opensearchassistant\model\TempleEvent.class
 com\example\opensearchassistant\config\SecurityConfig.class
 com\example\opensearchassistant\service\OpenSearchService.class
 com\example\opensearchassistant\model\AdminLoginResponse.class
 com\example\opensearchassistant\config\OpenSearchProperties.class
+com\example\opensearchassistant\model\TempleMcpSearchResponse.class
 com\example\opensearchassistant\model\ErrorResponse.class

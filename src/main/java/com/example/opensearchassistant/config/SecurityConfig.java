@@ -46,6 +46,8 @@ public class SecurityConfig {
                     "/styles.css",
                     "/app.js",
                     "/api/admin/login",
+                    "/api/ask",
+                    "/api/mcp/**",
                     "/api/public/**",
                     "/h2-console/**",
                     "/actuator/health"
