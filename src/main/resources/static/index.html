@@ -3,137 +3,169 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Village Temple Management</title>
+    <title>Temple Donation</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body>
-    <header class="topbar">
+  <body data-page="donor">
+    <header class="topbar donor-topbar">
       <div>
-        <p class="eyebrow">Village Administration</p>
-        <h1>Temple Management Dashboard</h1>
+        <p class="eyebrow">Village Temple</p>
+        <h1>Support the Temple</h1>
       </div>
-      <button id="refreshBtn" class="primary-btn">Refresh Data</button>
+      <a href="/admin.html" class="secondary-btn">Admin Login</a>
     </header>
 
-    <main class="container">
-      <section class="panel-grid">
-        <article class="card">
-          <h2>Admin Login</h2>
-          <form id="adminLoginForm">
-            <input type="text" name="username" value="admin" placeholder="Username" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <button type="submit" class="primary-btn">Login</button>
-          </form>
-        </article>
-
-        <article class="card">
-          <h2>Change Admin Password</h2>
-          <form id="passwordChangeForm">
-            <input type="password" name="currentPassword" placeholder="Current password" required />
-            <input type="password" name="newPassword" placeholder="New password" required />
-            <button type="submit" class="primary-btn">Update Password</button>
-          </form>
-        </article>
+    <main class="donor-shell container">
+      <section class="donor-hero card">
+        <div>
+          <p class="eyebrow">Your generous support</p>
+          <h2>Make a donation to the temple</h2>
+          <p>Help us maintain daily pooja, festivals, community seva, and temple services.</p>
+        </div>
+        <div class="donation-summary-box">
+          <span>Temple Donation Channels</span>
+          <strong>UPI / QR / Bank Transfer</strong>
+        </div>
       </section>
 
-      <section class="summary-grid" id="summaryGrid">
-        <article class="card summary-card">
-          <span>Total Members</span>
-          <strong id="totalMembers">0</strong>
-        </article>
-        <article class="card summary-card">
-          <span>Total Donations</span>
-          <strong id="totalDonations">0</strong>
-        </article>
-        <article class="card summary-card">
-          <span>Total Events</span>
-          <strong id="totalEvents">0</strong>
-        </article>
-        <article class="card summary-card highlight">
-          <span>Donation Amount</span>
-          <strong id="totalDonationAmount">0.00</strong>
-        </article>
+      <section class="card temple-profile">
+        <div class="temple-profile-header">
+          <div>
+            <p class="eyebrow">Sacred Heritage</p>
+            <h2>Niloor Nimbekka Devi Temple</h2>
+          </div>
+          <div class="badge">Kalaburagi, Karnataka</div>
+        </div>
+
+        <div class="info-grid">
+          <div>
+            <h3>About the temple</h3>
+            <p>
+              Niloor Nimbekka Devi Temple is a revered local shrine dedicated to Goddess Nimbekka, a form of Shakti worshipped with deep faith by devotees in and around Niloor, Afzalpur taluk, Kalaburagi (Gulbarga) district. The temple stands as an important spiritual center for the surrounding villages and families who visit for blessings, peace, and protection.
+            </p>
+          </div>
+          <div>
+            <h3>Temple importance</h3>
+            <p>
+              The temple is known for its devotional atmosphere, strong local tradition, and regular worship practices. Devotees often visit during festival days, special poojas, and auspicious occasions to seek divine grace and offer prayers for health, prosperity, and family well-being.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-grid compact-grid">
+          <div class="mini-card">
+            <span>Location</span>
+            <strong>Niloor, Afzalpur, Kalaburagi (Gulbarga), Karnataka</strong>
+          </div>
+          <div class="mini-card">
+            <span>Deity</span>
+            <strong>Goddess Nimbekka Devi</strong>
+          </div>
+          <div class="mini-card">
+            <span>Festivals</span>
+            <strong>Navaratri, Shakti Pooja, local temple celebrations</strong>
+          </div>
+          <div class="mini-card">
+            <span>Community</span>
+            <strong>Village devotion and spiritual service</strong>
+          </div>
+        </div>
       </section>
 
-      <section class="panel-grid">
-        <article class="card">
-          <h2>Add Member</h2>
-          <form id="memberForm">
-            <input type="text" name="name" placeholder="Name" required />
-            <input type="text" name="role" placeholder="Role" required />
-            <input type="text" name="phoneNumber" placeholder="Phone" required />
-            <input type="text" name="address" placeholder="Address" required />
-            <button type="submit" class="primary-btn">Save Member</button>
-          </form>
-        </article>
+      <section class="card assistant-panel">
+        <div class="assistant-header">
+          <div>
+            <p class="eyebrow">OpenAI assistance</p>
+            <h2>Ask about temple information</h2>
+          </div>
+        </div>
 
-        <article class="card">
-          <h2>Add Donation</h2>
+        <form id="assistantForm" class="assistant-form">
+          <div class="assistant-search-row">
+            <input
+              id="assistantInput"
+              type="text"
+              name="query"
+              placeholder="Ask about temple services, festivals, or donation details"
+              required
+            />
+            <button type="submit" class="primary-btn">Ask AI</button>
+          </div>
+        </form>
+
+        <div id="assistantStatus" class="assistant-status">Search temple knowledge and get a guided answer.</div>
+        <div id="assistantAnswer" class="assistant-answer">No answer yet.</div>
+        <div id="assistantResults" class="assistant-results"></div>
+      </section>
+
+      <section class="panel-grid donor-grid">
+        <article class="card donor-card">
+          <h2>Donation Details</h2>
           <form id="donationForm">
             <input type="text" name="donorName" placeholder="Donor Name" required />
             <input type="number" name="amount" step="0.01" placeholder="Amount" required />
             <input type="text" name="purpose" placeholder="Purpose" required />
             <input type="date" name="donationDate" required />
-            <button type="submit" class="primary-btn">Save Donation</button>
+
+            <label class="field-label" for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod">
+              <option value="UPI">UPI</option>
+              <option value="QR_CODE">QR Code</option>
+              <option value="BANK_TRANSFER">Bank Transfer</option>
+            </select>
+
+            <div class="payment-field-group" data-payment-group="upi">
+              <input type="text" name="transactionReference" placeholder="Transaction / UPI Reference" />
+              <input type="text" name="upiId" value="templedonation@upi" placeholder="UPI ID" />
+            </div>
+
+            <div class="payment-field-group" data-payment-group="bank" style="display: none;">
+              <input type="text" name="bankName" value="State Bank of India" placeholder="Bank Name" />
+              <input type="text" name="accountHolderName" value="Village Temple Trust" placeholder="Account Holder" />
+              <input type="text" name="accountNumber" value="123456789012" placeholder="Account Number" />
+              <input type="text" name="ifscCode" value="SBIN0001234" placeholder="IFSC Code" />
+            </div>
+
+            <div class="payment-field-group" data-payment-group="qr" style="display: none;">
+              <input type="text" name="qrCodeLabel" value="Temple Donation QR" placeholder="QR Code Label" />
+            </div>
+
+            <div class="payment-info-box">
+              <h3>Temple Donation Channels</h3>
+              <p><strong>UPI:</strong> templedonation@upi</p>
+              <p><strong>Bank:</strong> State Bank of India | A/C: 123456789012 | IFSC: SBIN0001234</p>
+              <div class="qr-code" aria-label="Donation QR code placeholder">
+                <span>Scan QR</span>
+              </div>
+            </div>
+
+            <button type="submit" class="primary-btn">Submit Donation</button>
           </form>
         </article>
 
-        <article class="card">
-          <h2>Add Event</h2>
-          <form id="eventForm">
-            <input type="text" name="name" placeholder="Event Name" required />
-            <input type="date" name="eventDate" required />
-            <input type="text" name="description" placeholder="Description" required />
-            <input type="text" name="status" placeholder="Status" required />
-            <button type="submit" class="primary-btn">Save Event</button>
-          </form>
-        </article>
-      </section>
-
-      <section class="table-grid">
-        <article class="card">
-          <h2>Members</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Phone</th>
-                <th>Address</th>
-              </tr>
-            </thead>
-            <tbody id="membersTableBody"></tbody>
-          </table>
-        </article>
-
-        <article class="card">
-          <h2>Donations</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Donor</th>
-                <th>Amount</th>
-                <th>Purpose</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody id="donationsTableBody"></tbody>
-          </table>
-        </article>
-
-        <article class="card">
-          <h2>Events</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Event</th>
-                <th>Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="eventsTableBody"></tbody>
-          </table>
-        </article>
+        <aside class="card donor-card payment-panel">
+          <h2>Payment Information</h2>
+          <div class="payment-detail-item">
+            <span>UPI ID</span>
+            <strong>templedonation@upi</strong>
+          </div>
+          <div class="payment-detail-item">
+            <span>Bank Name</span>
+            <strong>State Bank of India</strong>
+          </div>
+          <div class="payment-detail-item">
+            <span>Account Number</span>
+            <strong>123456789012</strong>
+          </div>
+          <div class="payment-detail-item">
+            <span>IFSC</span>
+            <strong>SBIN0001234</strong>
+          </div>
+          <div class="note-box">
+            <strong>Thank you</strong>
+            <p>Your donation helps support temple services, festivals, and community welfare.</p>
+          </div>
+        </aside>
       </section>
     </main>
 

@@ -1,7 +1,5 @@
 package com.example.opensearchassistant.config;
 
-import com.example.opensearchassistant.model.AdminUser;
-import com.example.opensearchassistant.repository.AdminUserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -13,8 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.example.opensearchassistant.repository.AdminUserRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -40,7 +39,17 @@ public class SecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/index.html", "/styles.css", "/app.js", "/api/admin/login", "/h2-console/**", "/actuator/health").permitAll()
+                .requestMatchers(
+                    "/",
+                    "/index.html",
+                    "/admin.html",
+                    "/styles.css",
+                    "/app.js",
+                    "/api/admin/login",
+                    "/api/public/**",
+                    "/h2-console/**",
+                    "/actuator/health"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
             .httpBasic(Customizer.withDefaults());

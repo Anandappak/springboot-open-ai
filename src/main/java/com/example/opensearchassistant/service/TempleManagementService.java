@@ -1,5 +1,10 @@
 package com.example.opensearchassistant.service;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.example.opensearchassistant.model.TempleDashboardSummary;
 import com.example.opensearchassistant.model.TempleDonation;
 import com.example.opensearchassistant.model.TempleEvent;
@@ -7,10 +12,6 @@ import com.example.opensearchassistant.model.TempleMember;
 import com.example.opensearchassistant.repository.TempleDonationRepository;
 import com.example.opensearchassistant.repository.TempleEventRepository;
 import com.example.opensearchassistant.repository.TempleMemberRepository;
-import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 public class TempleManagementService {
@@ -66,6 +67,7 @@ public class TempleManagementService {
             throw new IllegalArgumentException("Donation amount is required");
         }
 
+        normalizePaymentDetails(donation);
         return templeDonationRepository.save(donation);
     }
 
@@ -80,7 +82,44 @@ public class TempleManagementService {
         existing.setAmount(donation.getAmount());
         existing.setPurpose(donation.getPurpose());
         existing.setDonationDate(donation.getDonationDate());
+        existing.setPaymentMethod(donation.getPaymentMethod());
+        existing.setTransactionReference(donation.getTransactionReference());
+        existing.setUpiId(donation.getUpiId());
+        existing.setQrCodeLabel(donation.getQrCodeLabel());
+        existing.setBankName(donation.getBankName());
+        existing.setAccountHolderName(donation.getAccountHolderName());
+        existing.setAccountNumber(donation.getAccountNumber());
+        existing.setIfscCode(donation.getIfscCode());
+        existing.setPaymentStatus(donation.getPaymentStatus());
+        normalizePaymentDetails(existing);
         return templeDonationRepository.save(existing);
+    }
+
+    private void normalizePaymentDetails(TempleDonation donation) {
+        if (donation.getPaymentMethod() == null || donation.getPaymentMethod().isBlank()) {
+            donation.setPaymentMethod("UPI");
+        }
+        if (donation.getUpiId() == null || donation.getUpiId().isBlank()) {
+            donation.setUpiId("templedonation@upi");
+        }
+        if (donation.getQrCodeLabel() == null || donation.getQrCodeLabel().isBlank()) {
+            donation.setQrCodeLabel("Temple Donation QR");
+        }
+        if (donation.getBankName() == null || donation.getBankName().isBlank()) {
+            donation.setBankName("State Bank of India");
+        }
+        if (donation.getAccountHolderName() == null || donation.getAccountHolderName().isBlank()) {
+            donation.setAccountHolderName("Village Temple Trust");
+        }
+        if (donation.getAccountNumber() == null || donation.getAccountNumber().isBlank()) {
+            donation.setAccountNumber("123456789012");
+        }
+        if (donation.getIfscCode() == null || donation.getIfscCode().isBlank()) {
+            donation.setIfscCode("SBIN0001234");
+        }
+        if (donation.getPaymentStatus() == null || donation.getPaymentStatus().isBlank()) {
+            donation.setPaymentStatus("PAID");
+        }
     }
 
     public void deleteDonation(Long id) {

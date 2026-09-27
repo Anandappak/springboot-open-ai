@@ -17,6 +17,7 @@ com\example\opensearchassistant\model\KnowledgeDocument.class
 com\example\opensearchassistant\service\OpenAiService.class
 com\example\opensearchassistant\service\TempleManagementService.class
 com\example\opensearchassistant\model\TempleDonation.class
+com\example\opensearchassistant\controller\PublicDonationController.class
 com\example\opensearchassistant\OpenSearchAiAssistantApplication.class
 com\example\opensearchassistant\model\AdminUser.class
 com\example\opensearchassistant\model\TempleEvent.class

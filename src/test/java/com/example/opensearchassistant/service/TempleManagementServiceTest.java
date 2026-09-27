@@ -53,6 +53,30 @@ class TempleManagementServiceTest {
     }
 
     @Test
+    void paymentDetails_shouldBeStoredForOnlineDonation() {
+        TempleDonation donation = new TempleDonation();
+        donation.setDonorName("Sonia");
+        donation.setAmount(new BigDecimal("2500.00"));
+        donation.setPurpose("Festival support");
+        donation.setDonationDate(LocalDate.now());
+        donation.setPaymentMethod("UPI");
+        donation.setUpiId("templedonation@upi");
+        donation.setTransactionReference("UPI-1001");
+        donation.setBankName("State Bank of India");
+        donation.setAccountHolderName("Village Temple Trust");
+        donation.setAccountNumber("123456789012");
+        donation.setIfscCode("SBIN0001234");
+
+        TempleDonation saved = service.addDonation(donation);
+
+        assertThat(saved.getPaymentMethod()).isEqualTo("UPI");
+        assertThat(saved.getUpiId()).isEqualTo("templedonation@upi");
+        assertThat(saved.getTransactionReference()).isEqualTo("UPI-1001");
+        assertThat(saved.getBankName()).isEqualTo("State Bank of India");
+        assertThat(saved.getAccountNumber()).isEqualTo("123456789012");
+    }
+
+    @Test
     void members_shouldBeReturnedInInsertionOrder() {
         service.addMember(new TempleMember(null, "Asha", "Caretaker", "0770000001", "Village Road"));
         service.addMember(new TempleMember(null, "Kumar", "Priest", "0770000002", "Old Town"));

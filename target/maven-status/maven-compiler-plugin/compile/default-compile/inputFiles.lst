@@ -4,6 +4,7 @@ F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\confi
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\config\SecurityConfig.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\AdminController.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\AssistantController.java
+F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\PublicDonationController.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\controller\TempleManagementController.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\AdminLoginRequest.java
 F:\Springboot-open-ai-search\src\main\java\com\example\opensearchassistant\model\AdminLoginResponse.java
